@@ -16,6 +16,7 @@ export const initialCues:Cue[] = [
  {id:"jennifer-creation-video",name:"Video — Creación · Canto tema 2021",type:"video",participant:"JENNIFER",title:"CREACIÓN",subtitle:"CANTO TEMA 2021",video:"/media/creacion-canto-tema-2021.mp4"},
  {id:"award-jennifer",name:"Premio Voz de Esperanza",type:"award",participant:"JENNIFER",title:"VOZ DE ESPERANZA",description:"Por poner su voz al servicio de un mensaje de fe."},
  {id:"jonathan",name:"Jonathan — Animación",type:"video",participant:"JONATHAN",title:"JONATHAN",subtitle:"ANIMACIÓN",award:"CREATIVIDAD CON PROPÓSITO",description:"Por su esfuerzo, creatividad y por desarrollar una habilidad para comunicar buenas ideas."},
+ {id:"jonathan-special-video",name:"Video especial — Jonathan",type:"video",participant:"JONATHAN",title:"VIDEO ESPECIAL",subtitle:"DESPUÉS DE LA PRESENTACIÓN DE JONATHAN",video:"/media/jonathan-special.mp4"},
  {id:"award-jonathan",name:"Premio Creatividad con Propósito",type:"award",participant:"JONATHAN",title:"CREATIVIDAD CON PROPÓSITO",description:"Por su esfuerzo, creatividad y por desarrollar una habilidad que puede utilizarse para comunicar buenas ideas."},
  {id:"sela",name:"Sela Jireh — Canto especial",type:"participant",participant:"SELA JIREH",title:"SELA JIREH",subtitle:"CANTO ESPECIAL",award:"ALABANZA QUE INSPIRA",description:"Por compartir su talento y su alabanza."},
  {id:"award-sela",name:"Premio Alabanza que Inspira",type:"award",participant:"SELA JIREH",title:"ALABANZA QUE INSPIRA",description:"Por compartir su talento y su alabanza."},
