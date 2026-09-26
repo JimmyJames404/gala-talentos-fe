@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./photos.css";
 
 export const metadata: Metadata = {
   title: "Gala de Talentos y Fe — Control en Vivo",
