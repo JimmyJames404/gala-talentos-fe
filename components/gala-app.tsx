@@ -40,7 +40,12 @@ function Scene({program,compact=false}:{program:ProgramState;compact?:boolean}){
 
 function PreviewFrame({program,label,tone}:{program:ProgramState;label:string;tone:"blue"|"red"}){return <div className={"frame "+tone}><div className="frame-label"><span>{label}</span><small>{program.scene==="idle"?"FONDO":program.scene==="blackout"?"BLACKOUT":program.cue?.name}</small></div><div className="frame-screen"><Scene program={program} compact/></div></div>}
 export default function GalaApp(){const [path,setPath]=useState("/admin");useEffect(()=>setPath(window.location.hash.replace(/^#/,"")||window.location.pathname),[]);if(path.endsWith("/display"))return <Display/>;return <Admin rehearsalRoute={path.endsWith("/rehearsal")}/>}
-function Display(){const [program]=useSyncedProgram(LIVE_KEY);useEffect(()=>{const beat=()=>localStorage.setItem("gala_display_heartbeat",String(Date.now()));beat();const i=setInterval(beat,1000);return()=>clearInterval(i)},[]);return <main className="display-root" onDoubleClick={()=>document.documentElement.requestFullscreen?.()}><Scene program={program}/></main>}
+function Display(){
+ const [program]=useSyncedProgram(LIVE_KEY);const [fullscreen,setFullscreen]=useState(false);
+ useEffect(()=>{const beat=()=>localStorage.setItem("gala_display_heartbeat",String(Date.now()));const onFullscreen=()=>setFullscreen(!!document.fullscreenElement);beat();onFullscreen();const i=setInterval(beat,1000);document.addEventListener("fullscreenchange",onFullscreen);return()=>{clearInterval(i);document.removeEventListener("fullscreenchange",onFullscreen)}},[]);
+ const toggleFullscreen=()=>{if(document.fullscreenElement)void document.exitFullscreen?.();else void document.documentElement.requestFullscreen?.()};
+ return <main className="display-root" onDoubleClick={toggleFullscreen}><Scene program={program}/>{!fullscreen&&<button className="display-fullscreen" onClick={toggleFullscreen} aria-label="Poner el display en pantalla completa"><Expand/> PANTALLA COMPLETA <small>DOBLE CLIC</small></button>}</main>
+}
 
 function Admin({rehearsalRoute}:{rehearsalRoute:boolean}){
  const [mode,setMode]=useState<"live"|"rehearsal">(rehearsalRoute?"rehearsal":"live");const [live,setLive]=useSyncedProgram(LIVE_KEY);const [rehearsal,setRehearsal]=useSyncedProgram(REHEARSAL_KEY);const program=mode==="live"?live:rehearsal;const setProgram=mode==="live"?setLive:setRehearsal;
